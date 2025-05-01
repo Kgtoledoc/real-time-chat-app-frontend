@@ -17,14 +17,15 @@ const Register = ({ onShowLogin }) => {
 
                 if (!response.ok) {
                     const data = await response.json();
-                    throw new Error(data.message || 'Registration failed');
+                    console.log(data.message.message[0]);
+                    throw new Error(data.message.message[0]|| 'Registration failed');
                 }
                 alert('Registration successful! You can now log in.');
                 onShowLogin();
 
             } catch (error) {
                 console.error('Error during registration:', error);
-                alert('Registration failed: ' + error.message);
+                alert('Registration failed: ' + error);
             }
         }
         else {

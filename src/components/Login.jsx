@@ -21,8 +21,8 @@ const Login = ({ onLoginSuccess, onShowRegister }) => {
                 }
 
                 const data = await response.json();
-                localStorage.setItem('token', data.token);
-                onLoginSuccess();
+                localStorage.setItem('token', data.access_token);
+                onLoginSuccess(data.access_token, username);
 
             } catch (error) {
                 console.error('Error during login:', error);

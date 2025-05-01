@@ -10,7 +10,7 @@ const Chat = ({ token, username }) => {
     useEffect(() => {
         const newSocket = io('http://localhost:3000', {
             auth: {
-                token,
+                token: `${token}`,
             },
         });
 
@@ -40,6 +40,8 @@ const Chat = ({ token, username }) => {
 
     const sendMessage = () => {
         if (meessageInput.trim()) {
+            console.log('Sending message:', meessageInput);
+            console.log('Current room:', currentRoom);
             socket.emit('message', {
                 content: meessageInput,
                 room: currentRoom
@@ -65,6 +67,7 @@ const Chat = ({ token, username }) => {
             <div id="messages">
 
                 {messages.map((msg, index) => (
+                    console.log(msg),
                     <div key={index} className="message">
                         <strong>{msg.username}:</strong> {msg.content}
                     </div>
